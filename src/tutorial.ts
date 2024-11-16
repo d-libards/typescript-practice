@@ -1,36 +1,37 @@
-// let awesomeName = 'shakeAndBake';
-// awesomeName = 'something';
-// awesomeName = awesomeName.toLocaleUpperCase();
-// console.log(awesomeName);
+let tax: number | string = 10;
+tax = 100;
+tax = '$100';
+// console.log(tax);
 
-// // awesomeName = 20;
+let requestStatus: 'pending' | 'success' | 'error' = 'pending';
+requestStatus = 'error';
+requestStatus = 'success';
+// requestStatus = 'random';
 
-// let amount = 20;
-// amount = 20 - 1.52;
-// amount = parseFloat(amount.toFixed(2));
-// console.log(amount);
+let notSure: any = 4;
+notSure = ' maybe a string instead';
+notSure = false;
 
-// let isAwesome = true;
-// isAwesome = false;
-// console.log(isAwesome.valueOf());
-// // isAwesome = ' shakeAndBake';
+const books = ['1984', 'Brave New World', 'Celsius 45'];
 
-let name = 'DominiqUE';
-name = name.toLowerCase();
-console.log(name);
-// name = 20;
+let foundBook: string | undefined;
 
-let number = 20;
-number = number - 5;
-// number = 'Something';
-console.log(number);
-
-let isTruth = number < 12;
-isTruth = !isTruth;
-// isTruth = 20;
-
-if (isTruth) {
-  console.log('Truth');
-} else {
-  console.log('False');
+for (let book of books) {
+  if (book === '1983') {
+    foundBook = book;
+    foundBook = foundBook.toUpperCase();
+    break;
+  }
 }
+// foundBook = 10;
+console.log(foundBook);
+console.log(foundBook?.length);
+
+let orderStatus: 'processing' | 'shipped' | 'delivered' = 'processing';
+orderStatus = 'shipped';
+orderStatus = 'delivered';
+// orderStatus = 'cancelled';
+
+let discount: string | number = 20;
+discount = '20%';
+// discount = true;
