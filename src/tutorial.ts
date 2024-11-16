@@ -1,44 +1,42 @@
-// function sayHi(name: string) {
-//   console.log(`Hello, ${name.toUpperCase()}`);
+// function calcPrice(price: number, discount?: number): number {
+//   return price - (discount || 0);
 // }
 
-// sayHi('Dominique');
-// // sayHi(23);
+// let priceAfterDiscount = calcPrice(100, 20);
 
-// function calculateDiscount(price: number) {
-//   const hasDiscount = true;
-//   if (hasDiscount) {
-//     return price.toFixed();
-//     // return 'Discount Applied';
-//   }
+// function calcScore(initialScore: number, penaltyPoints: number = 0): number {
+//   return initialScore - penaltyPoints;
+// }
+// let scoreAfterPenalty = calcScore(100, 20);
+// let scoreWithoutPenalty = calcScore(300);
 
-//   return price * 0.9;
+// function sum(message: string, ...numbers: number[]): string {
+//   const doubled = numbers.map((num) => num * 2);
+//   console.log(doubled);
+
+//   let total = numbers.reduce((previous, current) => {
+//     return previous + current;
+//   }, 0);
+//   return `${message}${total}`;
+// }
+// let result = sum('The total is: ', 1, 2, 3, 4, 5);
+// console.log(result);
+
+// function logMessage(message: string): void {
+//   console.log(message);
+//   // return 'hello';
 // }
 
-// const finalPrice = calculateDiscount(200);
+// logMessage('Dominique');
 
-const names = ['John', 'Dave', 'Micheal'];
-
-function checkName(name: string): boolean {
-  {
-    return names.includes(name);
-    // for (let arrNames of names) {
-    //   if (arrNames === name) {
-    //     return true;
-    //     break;
-    //   }
-    // }
-    // return false;
+function processInput(input: string | number) {
+  if (typeof input === 'number') {
+    console.log(input * 2);
+  } else {
+    console.log(input.toUpperCase());
   }
 }
 
-console.log(checkName('John'));
-console.log(checkName('Martha'));
-
-let name = 'John';
-
-console.log(`${name} is ${!checkName(name) ? 'not ' : ''}in the list.`);
-
-if (checkName(name)) {
-  console.log(`${name} is ${!checkName(name) ? 'not ' : ''}in the list.`);
-}
+processInput(23);
+processInput('Dominique');
+processInput(true);
