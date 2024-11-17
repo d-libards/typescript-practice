@@ -1,66 +1,107 @@
-interface Book {
-  readonly isbn: number;
-  title: string;
-  author: string;
-  genre?: string;
-  //method
-  printAuthor(): void;
-  printTitle(message: string): string;
-  printSomething: (someValue: number) => number;
+// interface Person {
+//   name: string;
+//   getDetails(): string;
+// }
+
+// interface DogOwner {
+//   dogName: string;
+//   getDogDetails(): string;
+// }
+
+// interface Person {
+//   age: number;
+// }
+
+// const person: Person = {
+//   name: 'john',
+//   age: 30,
+//   getDetails() {
+//     return `Name: ${this.name}, Age: ${this.age}`;
+//   },
+// };
+
+// interface Employee extends Person {
+//   employeeId: number;
+// }
+
+// const employee: Employee = {
+//   employeeId: 3,
+//   name: 'mike',
+//   age: 34,
+//   getDetails() {
+//     return `Name: ${this.name}, Age: ${this.age}, ,EmployeeId: ${this.employeeId}`;
+//   },
+// };
+
+// console.log(employee.getDetails());
+
+// interface Manager extends Person, DogOwner {
+//   managePeople(): void;
+// }
+
+// const manager: Manager = {
+//   name: 'Jack',
+//   age: 25,
+//   dogName: 'Blackie',
+//   managePeople() {
+//     console.log('Managing people....');
+//   },
+//   getDetails() {
+//     return `Name: ${this.name}, Age: ${this.age}`;
+//   },
+//   getDogDetails() {
+//     return `Dog Name: ${this.dogName}`;
+//   },
+// };
+
+// console.log(manager.getDogDetails());
+// manager.managePeople();
+
+interface People {
+  name: string;
 }
 
-const deepWork: Book = {
-  isbn: 123456,
-  title: 'deep work',
-  author: 'Cal Newport',
-  genre: 'Self-help',
-  // printAuthor() {
-  //   console.log(this.author);
-  // },
-  printTitle(message) {
-    return `${message} ${this.title}`;
-  },
-  //first option
-  printSomething: function (someValue) {
-    return someValue;
-  },
-  //second op
-  // printSomething: (someValue) => {
-  //   // console.log(this);
-  //   console.log(deepWork.author);
-  //   return someValue;
-  // },
-  //third op
-  // printSomething(someValue) {
-  //   return someValue;
-  // },
-  printAuthor: () => {
-    console.log(deepWork.author);
-  },
-};
-
-// console.log(deepWork.printSomething(34));
-// deepWork.printAuthor();
-
-interface Computer {
-  readonly id: number;
-  brand: string;
-  ram: number;
-  storage?: number;
-  upgradeRam: (upgrade: number) => number;
+interface DogOwner extends People {
+  dogName: string;
 }
 
-const computer1: Computer = {
-  id: 1,
-  brand: 'lenovo',
-  ram: 16,
-  upgradeRam: function (amount) {
-    this.ram += amount;
-    return this.ram;
-  },
-};
+interface Manager extends People {
+  managePeople(): void;
+  delegateTask(): void;
+}
 
-computer1.storage = 256;
-// computer1.id = 3;
-console.log(computer1.upgradeRam(4));
-console.log(computer1);
+function getEmployee(): People | DogOwner | Manager {
+  const random = Math.random();
+  if (random < 0.33) {
+    return {
+      name: 'john',
+    };
+  } else if (random < 0.66) {
+    return {
+      name: 'Roxie',
+      dogName: 'Bob',
+    };
+  } else {
+    return {
+      name: 'Ferdinand',
+      managePeople() {
+        console.log(this.name);
+      },
+      delegateTask() {
+        console.log('delegating task');
+      },
+    };
+  }
+}
+
+const employee: People | DogOwner | Manager = getEmployee();
+
+console.log(employee.name);
+
+function isManager(obj: People | DogOwner | Manager): obj is Manager {
+  return 'managePeople' in obj;
+}
+
+if (isManager(employee)) {
+  employee.delegateTask();
+}
