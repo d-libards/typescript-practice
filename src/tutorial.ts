@@ -1,42 +1,42 @@
-// function calcPrice(price: number, discount?: number): number {
-//   return price - (discount || 0);
+// function createEmployee({ id }: { id: number }): {
+//   id: number;
+//   isActive: boolean;
+// } {
+//   return { id, isActive: id % 2 === 0 };
 // }
 
-// let priceAfterDiscount = calcPrice(100, 20);
+// const first = createEmployee({ id: 1 });
+// const second = createEmployee({ id: 2 });
 
-// function calcScore(initialScore: number, penaltyPoints: number = 0): number {
-//   return initialScore - penaltyPoints;
-// }
-// let scoreAfterPenalty = calcScore(100, 20);
-// let scoreWithoutPenalty = calcScore(300);
+// console.log(first, second);
 
-// function sum(message: string, ...numbers: number[]): string {
-//   const doubled = numbers.map((num) => num * 2);
-//   console.log(doubled);
-
-//   let total = numbers.reduce((previous, current) => {
-//     return previous + current;
-//   }, 0);
-//   return `${message}${total}`;
-// }
-// let result = sum('The total is: ', 1, 2, 3, 4, 5);
-// console.log(result);
-
-// function logMessage(message: string): void {
-//   console.log(message);
-//   // return 'hello';
+//alternative
+// function createStudent(student: { id: number; name: string }): void {
+//   console.log(`Welcome to the course ${student.name.toUpperCase()}`);
 // }
 
-// logMessage('Dominique');
+// const newStudent = {
+//   id: 5,
+//   name: 'anna',
+//   email: 'anna@gmail.com',
+// };
 
-function processInput(input: string | number) {
+// createStudent(newStudent);
+// createStudent({ id: 6, name: 'bob', email: 'bobo@gmail.com' });
+
+function processData(
+  input: string | number,
+  config: { reverse: boolean } = { reverse: false }
+): string | number {
   if (typeof input === 'number') {
-    console.log(input * 2);
+    return input * input;
   } else {
-    console.log(input.toUpperCase());
+    return config.reverse
+      ? input.split('').reverse().join('').toUpperCase()
+      : input.toUpperCase();
   }
 }
 
-processInput(23);
-processInput('Dominique');
-processInput(true);
+console.log(processData('Hello'));
+console.log(processData('Dominique', { reverse: true }));
+console.log(processData(10));
