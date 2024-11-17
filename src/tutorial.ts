@@ -1,42 +1,88 @@
-// function createEmployee({ id }: { id: number }): {
-//   id: number;
-//   isActive: boolean;
-// } {
-//   return { id, isActive: id % 2 === 0 };
+// // type User = { id: number; name: string; isActive: boolean };
+// // const john: User = {
+// //   id: 1,
+// //   name: 'john',
+// //   isActive: true,
+// // };
+// // const susan: User = {
+// //   id: 1,
+// //   name: 'susan',
+// //   isActive: false,
+// // };
+
+// // function createUser(user: User): User {
+// //   console.log(`Hello there ${user.name.toUpperCase()} !!!`);
+
+// //   return user;
+// // }
+
+// // type StringOrNumber = string | number;
+
+// // let value: StringOrNumber;
+// // value = 'hello';
+// // value = 123;
+
+// // type Theme = 'light' | 'dark';
+// // let theme: Theme;
+// // theme = 'dark';
+// // theme = 'light';
+
+// // function setTheme(t: Theme) {
+// //   theme = t;
+// // }
+
+// // setTheme('light');
+
+// type Employee = { id: number; name: string; department: string };
+
+// type Manager = { id: number; name: string; employees: Employee[] };
+
+// type Staff = Employee | Manager;
+
+// function printStaffDetails(staff: Staff): void {
+//   if ('employees' in staff) {
+//     console.log(
+//       `${staff.name} is an manager of ${staff.employees.length} employees`
+//     );
+//   } else {
+//     console.log(`${staff.name} is an employee in the ${staff.department}`);
+//   }
 // }
 
-// const first = createEmployee({ id: 1 });
-// const second = createEmployee({ id: 2 });
+// const alice: Employee = { id: 1, name: 'Alice', department: 'Finance' };
+// const maria: Employee = { id: 1, name: 'Alice', department: 'Human Resource' };
 
-// console.log(first, second);
+// const bob: Manager = { id: 3, name: 'Bob', employees: [maria, alice] };
 
-//alternative
-// function createStudent(student: { id: number; name: string }): void {
-//   console.log(`Welcome to the course ${student.name.toUpperCase()}`);
-// }
+// printStaffDetails(bob);
+// printStaffDetails(alice);
 
-// const newStudent = {
-//   id: 5,
-//   name: 'anna',
-//   email: 'anna@gmail.com',
+// type Book = { id: number; name: string; price: number };
+// type DiscountedBook = Book & { discount: number };
+
+// const book1: Book = {
+//   id: 1,
+//   name: 'How to train your dragon',
+//   price: 200,
 // };
 
-// createStudent(newStudent);
-// createStudent({ id: 6, name: 'bob', email: 'bobo@gmail.com' });
+// const book2: Book = {
+//   id: 2,
+//   name: 'Joke 101',
+//   price: 100,
+// };
 
-function processData(
-  input: string | number,
-  config: { reverse: boolean } = { reverse: false }
-): string | number {
-  if (typeof input === 'number') {
-    return input * input;
-  } else {
-    return config.reverse
-      ? input.split('').reverse().join('').toUpperCase()
-      : input.toUpperCase();
-  }
-}
+// const discountedBook: DiscountedBook = {
+//   id: 3,
+//   name: 'Love is War',
+//   price: 25,
+//   discount: 0.15,
+// };
 
-console.log(processData('Hello'));
-console.log(processData('Dominique', { reverse: true }));
-console.log(processData(10));
+const propName = 'age';
+
+type Animal = {
+  [propName]: number;
+};
+
+let tiger = { [propName]: 5 };
