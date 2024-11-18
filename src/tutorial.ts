@@ -1,41 +1,10 @@
-// let someValues: never = 0;
+import newStudent, { sayHello, person, type Student } from './actions';
 
-type Theme = 'light' | 'dark';
+sayHello('TypeScript');
+console.log(newStudent);
+console.log(person);
 
-function checkTheme(theme: Theme): void {
-  if (theme === 'light') {
-    console.log('light theme');
-    return;
-  }
-  if (theme === 'dark') {
-    console.log('dark theme');
-    return;
-  }
-  theme;
-}
-
-enum Color {
-  Red,
-  Blue,
-  Green,
-}
-
-function getColorName(color: Color) {
-  switch (color) {
-    case Color.Red:
-      return 'Red';
-    case Color.Blue:
-      return 'Blue';
-    case Color.Green:
-      return 'Green';
-    default:
-      // at built time
-      let unexpectedColor: never = color;
-      // at runtime
-      throw new Error(`Unexpected color value: ${color}`);
-  }
-}
-
-console.log(getColorName(Color.Blue));
-console.log(getColorName(Color.Red));
-console.log(getColorName(Color.Green));
+const anotherStudent: Student = {
+  name: 'Mark',
+  age: 17,
+};
