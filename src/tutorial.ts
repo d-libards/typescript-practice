@@ -1,40 +1,27 @@
-import { z } from 'zod';
-const url = 'https://www.course-api.com/react-tours-project';
+class Book {
+  readonly title: string;
+  author: string;
+  private checkout: boolean = false;
 
-const tourSchema = z.object({
-  id: z.string(),
-  name: z.string(),
-  info: z.string(),
-  image: z.string(),
-  price: z.string(),
-});
+  constructor(title: string, author: string) {
+    this.title = title;
+    this.author = author;
+  }
 
-type Tour = z.infer<typeof tourSchema>;
+  public checkOut() {
+    this.checkout = this.toggleCheckedOutStatus();
+  }
 
-async function fetchData(url: string): Promise<Tour[]> {
-  try {
-    const response = await fetch(url);
-    if (!response.ok) {
-      throw new Error(`HTTP error! status:${response.status}`);
-    }
-    const rawData: Tour[] = await response.json();
-    const result = tourSchema.array().safeParse(rawData);
-    if (!result.success) {
-      throw new Error(`Invalid data: ${result.error}`);
-    }
-    console.log(result);
+  public isCheckOut(): boolean {
+    return this.checkout;
+  }
 
-    return result.data;
-  } catch (error) {
-    const errorMsg =
-      error instanceof Error ? error.message : 'there was an error...';
-    console.log(errorMsg);
-    return [];
+  private toggleCheckedOutStatus() {
+    return !this.checkout;
   }
 }
 
-const tours = await fetchData(url);
-
-tours.map((tour) => {
-  console.log(tour.name);
-});
+const deepWork = new Book('Deep Work', 'Cal Newport');
+deepWork.checkOut();
+deepWork.checkOut();
+console.log(deepWork.isCheckOut());
