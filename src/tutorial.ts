@@ -1,27 +1,26 @@
 class Book {
-  readonly title: string;
-  author: string;
-  private checkout: boolean = false;
+  private checkedOut: boolean = false;
+  constructor(readonly title: string, public author: string) {}
 
-  constructor(title: string, author: string) {
-    this.title = title;
-    this.author = author;
+  get info() {
+    return `${this.title} by ${this.author}`;
+  }
+  private set checkOut(checkedOut: boolean) {
+    this.checkedOut = checkedOut;
   }
 
-  public checkOut() {
-    this.checkout = this.toggleCheckedOutStatus();
+  get checkOut() {
+    return this.checkedOut;
   }
 
-  public isCheckOut(): boolean {
-    return this.checkout;
-  }
-
-  private toggleCheckedOutStatus() {
-    return !this.checkout;
+  public get someInfo() {
+    this.checkOut = true;
+    return `${this.title} by ${this.author}`;
   }
 }
 
 const deepWork = new Book('Deep Work', 'Cal Newport');
-deepWork.checkOut();
-deepWork.checkOut();
-console.log(deepWork.isCheckOut());
+console.log(deepWork.info);
+console.log(deepWork);
+console.log(deepWork.someInfo);
+console.log(deepWork.checkOut);
