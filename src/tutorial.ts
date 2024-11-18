@@ -1,107 +1,15 @@
-// interface Person {
-//   name: string;
-//   getDetails(): string;
-// }
+let person: [string, number] = ['john', 25];
 
-// interface DogOwner {
-//   dogName: string;
-//   getDogDetails(): string;
-// }
+let date: [number, number, number] = [12, 17, 2001];
+date.push(23);
+console.log(date);
 
-// interface Person {
-//   age: number;
-// }
-
-// const person: Person = {
-//   name: 'john',
-//   age: 30,
-//   getDetails() {
-//     return `Name: ${this.name}, Age: ${this.age}`;
-//   },
-// };
-
-// interface Employee extends Person {
-//   employeeId: number;
-// }
-
-// const employee: Employee = {
-//   employeeId: 3,
-//   name: 'mike',
-//   age: 34,
-//   getDetails() {
-//     return `Name: ${this.name}, Age: ${this.age}, ,EmployeeId: ${this.employeeId}`;
-//   },
-// };
-
-// console.log(employee.getDetails());
-
-// interface Manager extends Person, DogOwner {
-//   managePeople(): void;
-// }
-
-// const manager: Manager = {
-//   name: 'Jack',
-//   age: 25,
-//   dogName: 'Blackie',
-//   managePeople() {
-//     console.log('Managing people....');
-//   },
-//   getDetails() {
-//     return `Name: ${this.name}, Age: ${this.age}`;
-//   },
-//   getDogDetails() {
-//     return `Dog Name: ${this.dogName}`;
-//   },
-// };
-
-// console.log(manager.getDogDetails());
-// manager.managePeople();
-
-interface People {
-  name: string;
+function getPerson(): [string, number] {
+  return ['john', 25];
 }
 
-interface DogOwner extends People {
-  dogName: string;
-}
+let randomPerson = getPerson();
+console.log(randomPerson[0]);
+console.log(randomPerson[1]);
 
-interface Manager extends People {
-  managePeople(): void;
-  delegateTask(): void;
-}
-
-function getEmployee(): People | DogOwner | Manager {
-  const random = Math.random();
-  if (random < 0.33) {
-    return {
-      name: 'john',
-    };
-  } else if (random < 0.66) {
-    return {
-      name: 'Roxie',
-      dogName: 'Bob',
-    };
-  } else {
-    return {
-      name: 'Ferdinand',
-      managePeople() {
-        console.log(this.name);
-      },
-      delegateTask() {
-        console.log('delegating task');
-      },
-    };
-  }
-}
-
-const employee: People | DogOwner | Manager = getEmployee();
-
-console.log(employee.name);
-
-function isManager(obj: People | DogOwner | Manager): obj is Manager {
-  return 'managePeople' in obj;
-}
-
-if (isManager(employee)) {
-  employee.delegateTask();
-}
+let susan: [string, number?] = ['susan'];
